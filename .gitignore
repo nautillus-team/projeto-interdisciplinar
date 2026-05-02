@@ -1,0 +1,67 @@
+# IDE
+.idea/
+.vscode/
+*.iml
+*.iws
+*.ipr
+.settings/
+.classpath
+.project
+*.swp
+*.swo
+*~
+
+# Build outputs
+target/
+build/
+out/
+dist/
+*.class
+*.jar
+*.war
+*.ear
+
+# Maven
+.m2/
+pom.xml.tag
+pom.xml.releaseBackup
+release.properties
+dependency-reduced-pom.xml
+
+# Gradle
+.gradle/
+gradle/
+gradlew
+gradlew.bat
+
+# OS specific
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Node
+node_modules/
+npm-debug.log
+package-lock.json
+yarn.lock
+
+# Python
+*.pyc
+__pycache__/
+*.egg-info/
+venv/
+env/
+
+# Cache and temp files
+*.log
+.cache/
+*.tmp
+.venv
+
+# JVM
+hs_err_pid*
+hsperfdata_*/
