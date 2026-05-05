@@ -1,13 +1,13 @@
 package nautillus.models;
 
-public class patient {
+public class Patient {
 
     private static int genId = 0;
 
     private final int id;
     private String triagem;
 
-    public patient (int id, String Triagem) {
+    public Patient(int id, String Triagem) {
 
         this.id = ++genId;
         setTriagem(triagem);
