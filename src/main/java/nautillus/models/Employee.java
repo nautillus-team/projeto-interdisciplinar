@@ -2,7 +2,8 @@ package nautillus.models;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import nautillus.enums.EnumEmp;
+
+import nautillus.enums.EmployeeType;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class Employee {
@@ -13,13 +14,13 @@ public class Employee {
     private String nome;
     private String cpf;
     private String rg;
-    private EnumEmp.EnumEmpl funcao;
+    private EmployeeType funcao;
     private String dataNasc;
     private String senha;
     private String matricula;
     private final int id;
 
-    public Employee(String nome, String cpf, String rg, EnumEmp.EnumEmpl funcao,
+    public Employee(String nome, String cpf, String rg, EmployeeType funcao,
                     String matricula, String dataNasc, String senha) {
 
         setNome(nome);
@@ -68,11 +69,11 @@ public class Employee {
         }
     }
 
-    public EnumEmp.EnumEmpl getFuncao() {
+    public EmployeeType getFuncao() {
         return this.funcao;
     }
 
-    public void setFuncao(EnumEmp.EnumEmpl fFuncao) {
+    public void setFuncao(EmployeeType fFuncao) {
         if (fFuncao == null) {
             throw new IllegalArgumentException("Funcao invalida!");
         }

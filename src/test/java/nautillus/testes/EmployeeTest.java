@@ -32,7 +32,7 @@ public class EmployeeTest {
 
     @Test
     void EmployeeInvalid() {
-        assertThrows(IllegalArgumentException.class, () ->new Employee(
+        assertThrows(IllegalArgumentException.class, () -> new Employee(
                 "Jimmy Silva", //encontra excessão de nome ✅
                 "12345678901", //encontra excessão de cpf ✅
                 "123456789", //encontra excessão de rg ✅

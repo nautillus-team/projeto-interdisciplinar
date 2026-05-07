@@ -1,8 +1,8 @@
 package nautillus.models;
 
-import nautillus.enums.EnumEmp;
+import nautillus.enums.EmployeeType;
 
-public class Medic extends Employee {
+public class Medic extends EmployeeType {
 
     private String crm;
     private int consultorio;

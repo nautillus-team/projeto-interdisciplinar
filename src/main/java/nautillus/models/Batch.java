@@ -2,7 +2,7 @@ package nautillus.models;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import nautillus.enums.EnumRem;
+import nautillus.enums.LabelColor;
 
 public class Batch extends Remedies {
 
@@ -12,7 +12,7 @@ public class Batch extends Remedies {
     private int numLote;
     private LocalDate datCad;
 
-    public Batch(String nome, EnumRem.opTarja tarja, EnumRem.opFarm forFarmac, EnumRem.opVia viaAdm,
+    public Batch(String nome, LabelColor tarja, EnumRem.opFarm forFarmac, EnumRem.opVia viaAdm,
                  String regAnvisa, boolean autoMed, EnumRem.opStatus status, int quant,
                  float preco, String fab, String val, int numLote, String datCad) {
 
