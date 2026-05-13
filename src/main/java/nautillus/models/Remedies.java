@@ -1,109 +1,111 @@
 package nautillus.models;
 
-import nautillus.enums.EnumRem;
+import nautillus.enums.AdministrationRoute;
+import nautillus.enums.Label;
+import nautillus.enums.PharmForm;
+import nautillus.enums.RemedyStatus;
 
 public class Remedies {
 
-    private String nome;
-    private EnumRem.opTarja tarja;
-    private EnumRem.opFarm forFarmac;
-    private EnumRem.opVia viaAdm;
-    private String regAnvisa;
-    private boolean autoMed;
-    private EnumRem.opStatus status;
-    private int quant;
+    private String name;
+    private Label labelColor;
+    private PharmForm pharmaceuticalForm;
+    private AdministrationRoute administrationRoute;
+    private String anvisaRegistration;
+    private boolean selfMedication;
+    private RemedyStatus status;
+    private int quantity;
 
-    public Remedies(String nome, EnumRem.opTarja tarja, EnumRem.opFarm forFarmac, EnumRem.opVia viaAdm, String regAnvisa,
-                    boolean autoMed, EnumRem.opStatus status, int quant) {
-
-        setNome(nome);
-        setTarja(tarja);
-        setForFarmac(forFarmac);
-        setViaAdm(viaAdm);
-        setRegAnvisa(regAnvisa);
-        setAutoMed(autoMed);
+    public Remedies(String name, Label labelColor, PharmForm pharmaceuticalForm,
+                    AdministrationRoute administrationRoute, String anvisaRegistration,
+                    boolean selfMedication, RemedyStatus status, int quantity) {
+        setName(name);
+        setLabel(labelColor);
+        setPharmaceuticalForm(pharmaceuticalForm);
+        setAdministrationRoute(administrationRoute);
+        setAnvisaRegistration(anvisaRegistration);
+        setSelfMedication(selfMedication);
         setStatus(status);
-        setQuant(quant);
+        setQuantity(quantity);
     }
 
-    public String getNome() {
-        return this.nome;
+    public String getName() {
+        return this.name;
     }
 
-    public void setNome(String rNome) {
-        if (rNome != null && rNome.replace(" ", "").matches("[a-zA-ZÀ-ÿ]+")) {
-            this.nome = rNome;
+    public void setName(String name) {
+        if (name != null && name.replace(" ", "").matches("[a-zA-ZÀ-ÿ]+")) {
+            this.name = name;
         } else {
             throw new IllegalArgumentException("Nome invalido! Use apenas letras.");
         }
     }
 
-    public EnumRem.opTarja getTarja() {
-        return this.tarja;
+    public Label getLabel() {
+        return this.labelColor;
     }
 
-    public void setTarja(EnumRem.opTarja rTarja) {
-        if (rTarja == null) throw new IllegalArgumentException("Tarja invalida!");
-        this.tarja = rTarja;
+    public void setLabel(Label labelColor) {
+        if (labelColor == null) throw new IllegalArgumentException("Tarja invalida!");
+        this.labelColor = labelColor;
     }
 
-    public EnumRem.opFarm getForFarmac() {
-        return this.forFarmac;
+    public PharmForm getPharmaceuticalForm() {
+        return this.pharmaceuticalForm;
     }
 
-    public void setForFarmac(EnumRem.opFarm rForFarmac) {
-        if (rForFarmac == null) throw new IllegalArgumentException("Forma farmaceutica invalida!");
-        this.forFarmac = rForFarmac;
+    public void setPharmaceuticalForm(PharmForm pharmaceuticalForm) {
+        if (pharmaceuticalForm == null) throw new IllegalArgumentException("Forma farmaceutica invalida!");
+        this.pharmaceuticalForm = pharmaceuticalForm;
     }
 
-    public EnumRem.opVia getViaAdm() {
-        return this.viaAdm;
+    public AdministrationRoute getAdministrationRoute() {
+        return this.administrationRoute;
     }
 
-    public void setViaAdm(EnumRem.opVia rViaAdm) {
-        if (rViaAdm == null) throw new IllegalArgumentException("Via de administracao invalida!");
-        this.viaAdm = rViaAdm;
+    public void setAdministrationRoute(AdministrationRoute administrationRoute) {
+        if (administrationRoute == null) throw new IllegalArgumentException("Via de administracao invalida!");
+        this.administrationRoute = administrationRoute;
     }
 
-    public String getRegAnvisa() {
-        return this.regAnvisa;
+    public String getAnvisaRegistration() {
+        return this.anvisaRegistration;
     }
 
-    public void setRegAnvisa(String rRegAnvisa) {
-        if (rRegAnvisa != null && rRegAnvisa.matches("[0-9]+") && rRegAnvisa.length() == 13) {
-            this.regAnvisa = rRegAnvisa;
+    public void setAnvisaRegistration(String anvisaRegistration) {
+        if (anvisaRegistration != null && anvisaRegistration.matches("[0-9]+") && anvisaRegistration.length() == 13) {
+            this.anvisaRegistration = anvisaRegistration;
         } else {
             throw new IllegalArgumentException("Registro ANVISA invalido! Deve conter 13 digitos.");
         }
     }
 
-    public boolean isAutoMed() {
-        return this.autoMed;
+    public boolean isSelfMedication() {
+        return this.selfMedication;
     }
 
-    public void setAutoMed(boolean rAutoMed) {
-        this.autoMed = rAutoMed;
+    public void setSelfMedication(boolean selfMedication) {
+        this.selfMedication = selfMedication;
     }
 
-    public EnumRem.opStatus getStatus() {
+    public RemedyStatus getStatus() {
         return this.status;
     }
 
-    public void setStatus(EnumRem.opStatus rStatus) {
-        if (rStatus == null) {
-            this.status = rStatus;
-        } else {
+    public void setStatus(RemedyStatus status) {
+        if (status == null) {
             throw new IllegalArgumentException("Status invalido!");
         }
+        this.status = status;
     }
 
-    public int getQuant() {
-        return this.quant;
+    public int getQuantity() {
+        return this.quantity;
     }
 
-    public void setQuant(int rQuant) {
-        if (rQuant >= 0) {
-            this.quant = rQuant;
+    public void setQuantity(int quantity) {
+        if (quantity >= 0) {
+            this.quantity = quantity;
         } else {
             throw new IllegalArgumentException("Quantidade nao pode ser negativa!");
         }

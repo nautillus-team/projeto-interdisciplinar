@@ -1,67 +1,68 @@
 package nautillus.models;
 
 import nautillus.enums.EmployeeType;
+import nautillus.enums.MedicalSpecialty;
+import nautillus.enums.NurseType;
 
 public class Administrative extends Employee {
 
-    private float verba;
+    private float budget;
 
-    public Administrative(String nome, String cpf, String rg, String matricula,
-                          String dataNasc, String senha, float verba) {
-        super(nome, cpf, rg, EmployeeType.ADMINISTRATIVO, matricula, dataNasc, senha);
-
-        setVerba(verba);
+    public Administrative(String name, String cpf, String rg, String employeeId,
+                          String birthDate, String password, float budget) {
+        super(name, cpf, rg, EmployeeType.ADMINISTRATIVE, employeeId, birthDate, password);
+        setBudget(budget);
     }
 
-    public float getVerba() {
-        return this.verba;
+    public float getBudget() {
+        return this.budget;
     }
 
-    public void setVerba(float rVerba) {
-        if (rVerba >= 0) {
-            this.verba = rVerba;
+    public void setBudget(float budget) {
+        if (budget >= 0) {
+            this.budget = budget;
         } else {
             throw new IllegalArgumentException("Verba invalida! O valor nao pode ser negativo.");
         }
     }
 
-    public void createEmployee(Employee aEmployee, String nomeEmp, String cpfEmp, String rgEmp,
-                               EmployeeType funEmp, String matrEmp, String nascEmp, String senhaEmp) {
+    public void createEmployee(Employee employee, String name, String cpf, String rg,
+                                EmployeeType role, String employeeId, String birthDate, String password) {
         try {
-            aEmployee.setNome(nomeEmp);
-            aEmployee.setCpf(cpfEmp);
-            aEmployee.setRg(rgEmp);
-            aEmployee.setFuncao(funEmp);
-            aEmployee.setMatricula(matrEmp);
-            aEmployee.setDataNasc(nascEmp);
-            aEmployee.setSenha(senhaEmp);
+            employee.setName(name);
+            employee.setCpf(cpf);
+            employee.setRg(rg);
+            employee.setRole(role);
+            employee.setEmployeeId(employeeId);
+            employee.setBirthDate(birthDate);
+            employee.setPassword(password);
         } catch (IllegalArgumentException e) {
             System.out.println("Erro ao criar funcionario: " + e.getMessage());
         }
     }
 
-    public void createMedic(Medic aMedic, String crMed, int consultMed, EnumEmp.EnuMed espMed) {
+    public void createMedic(Medic medic, String crm, int office, MedicalSpecialty specialty) {
         try {
-            aMedic.setCrm(crMed);
-            aMedic.setConsultorio(consultMed);
-            aMedic.setEsp(espMed);
+            medic.setCrm(crm);
+            medic.setOffice(office);
+            medic.setSpecialty(specialty);
         } catch (IllegalArgumentException e) {
             System.out.println("Erro ao criar medico: " + e.getMessage());
         }
     }
 
-    public void createNurse(Nurse aNurse, String coreNur, EnumEmp.EnumNur compostaNur) {
+    public void createNurse(Nurse nurse, String coren, NurseType category) {
         try {
-            aNurse.setCoren(coreNur);
-            aNurse.setComposta(compostaNur);
+            nurse.setCoren(coren);
+            nurse.setCategory(category);
         } catch (IllegalArgumentException e) {
             System.out.println("Erro ao criar enfermeiro: " + e.getMessage());
         }
     }
 
-    public void createPharmaceutical(Pharmaceutical aPharmaceutical, String crfPha) {
+    public void createPharmaceutical(Pharmaceutical pharmaceutical, String crf) {
         try {
-            aPharmaceutical.setCrf(crfPha);
+            pharmaceutical.setCrf(crf);
         } catch (IllegalArgumentException e) {
             System.out.println("Erro ao criar farmaceutico: " + e.getMessage());
         }

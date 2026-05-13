@@ -5,29 +5,26 @@ public class Patient {
     private static int genId = 0;
 
     private final int id;
-    private String triagem;
+    private String triage;
 
-    public Patient(int id, String Triagem) {
-
+    public Patient(int id, String triage) {
         this.id = ++genId;
-        setTriagem(triagem);
+        setTriage(triage);
     }
 
     public int getId() {
         return this.id;
     }
 
-    public String getTriagem() {
-        return this.triagem;
+    public String getTriage() {
+        return this.triage;
     }
 
-    public void setTriagem(String fTriagem) {
-        if (fTriagem != null) {
-            this.triagem = fTriagem;
+    public void setTriage(String triage) {
+        if (triage != null) {
+            this.triage = triage;
         } else {
-            throw new IllegalArgumentException("E necessário digitar um valor para triagem!");
+            throw new IllegalArgumentException("E necessario digitar um valor para triagem!");
         }
     }
-
-
 }

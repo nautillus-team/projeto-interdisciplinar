@@ -1,55 +1,54 @@
 package nautillus.models;
 
 import nautillus.enums.EmployeeType;
+import nautillus.enums.MedicalSpecialty;
 
-public class Medic extends EmployeeType {
+public class Medic extends Employee {
 
     private String crm;
-    private int consultorio;
-    private EnumEmp.EnuMed esp;
+    private int office;
+    private MedicalSpecialty specialty;
 
-    public Medic(String nome, String cpf, String rg, String matricula, String dataNasc,
-                 String senha, String crm, int consultorio, EnumEmp.EnuMed esp) {
-
-        super(nome, cpf, rg, EnumEmp.EnumEmpl.MEDICO, matricula, dataNasc, senha);
-
+    public Medic(String name, String cpf, String rg, String employeeId, String birthDate,
+                 String password, String crm, int office, MedicalSpecialty specialty) {
+        super(name, cpf, rg, EmployeeType.DOCTOR, employeeId, birthDate, password);
         setCrm(crm);
-        setConsultorio(consultorio);
-        setEsp(esp);
+        setOffice(office);
+        setSpecialty(specialty);
     }
 
-    public String getCrm() { 
-        return this.crm; 
+    public String getCrm() {
+        return this.crm;
     }
 
-    public void setCrm(String fCrm) {
-        if (fCrm != null && fCrm.matches("[0-9]+") && fCrm.length() >= 4) {
-            this.crm = fCrm;
+    public void setCrm(String crm) {
+        if (crm != null && crm.matches("[0-9]+") && crm.length() >= 4) {
+            this.crm = crm;
         } else {
             throw new IllegalArgumentException("CRM invalido!");
         }
     }
 
-    public int getConsultorio() {
-        return this.consultorio;
+    public int getOffice() {
+        return this.office;
     }
 
-    public void setConsultorio(int fConsultorio) {
-        if (fConsultorio >= 0 && fConsultorio <= 100) {
-            this.consultorio = fConsultorio;
+    public void setOffice(int office) {
+        if (office >= 0 && office <= 100) {
+            this.office = office;
         } else {
             throw new IllegalArgumentException("Consultorio invalido! Digite um valor entre 0 e 100.");
         }
     }
 
-    public EnumEmp.EnuMed getEsp() {
-        return this.esp;
+    public MedicalSpecialty getSpecialty() {
+        return this.specialty;
     }
 
-    public void setEsp(EnumEmp.EnuMed fEsp) {
-        if (fEsp == null) {
+    public void setSpecialty(MedicalSpecialty specialty) {
+        if (specialty == null) {
             throw new IllegalArgumentException("Especialidade invalida!");
         }
-        this.esp = fEsp;
+        this.specialty = specialty;
     }
 }

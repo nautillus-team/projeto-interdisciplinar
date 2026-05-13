@@ -1,41 +1,40 @@
 package nautillus.models;
 
-import nautillus.enums.EnumEmp;
+import nautillus.enums.EmployeeType;
+import nautillus.enums.NurseType;
 
 public class Nurse extends Employee {
 
     private String coren;
-    private EnumEmp.EnumNur composta;
+    private NurseType category;
 
-    public Nurse(String nome, String cpf, String rg, String matricula, String dataNasc,
-                 String senha, String coren, EnumEmp.EnumNur composta) {
-
-        super(nome, cpf, rg, EnumEmp.EnumEmpl.ENFERMEIRO, matricula, dataNasc, senha);
-
+    public Nurse(String name, String cpf, String rg, String employeeId, String birthDate,
+                 String password, String coren, NurseType category) {
+        super(name, cpf, rg, EmployeeType.NURSE, employeeId, birthDate, password);
         setCoren(coren);
-        setComposta(composta);
+        setCategory(category);
     }
 
     public String getCoren() {
         return this.coren;
     }
 
-    public void setCoren(String fCoren) {
-        if (fCoren != null && fCoren.length() == 6 && fCoren.matches("[0-9]+")) {
-            this.coren = fCoren;
+    public void setCoren(String coren) {
+        if (coren != null && coren.length() == 6 && coren.matches("[0-9]+")) {
+            this.coren = coren;
         } else {
             throw new IllegalArgumentException("COREN invalido! Deve conter 6 digitos.");
         }
     }
 
-    public EnumEmp.EnumNur getComposta() {
-        return this.composta;
+    public NurseType getCategory() {
+        return this.category;
     }
 
-    public void setComposta(EnumEmp.EnumNur fComposta) {
-        if (fComposta == null) {
-            throw new IllegalArgumentException("Composta invalida!");
+    public void setCategory(NurseType category) {
+        if (category == null) {
+            throw new IllegalArgumentException("Categoria invalida!");
         }
-        this.composta = fComposta;
+        this.category = category;
     }
 }

@@ -2,112 +2,111 @@ package nautillus.models;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import nautillus.enums.LabelColor;
+import java.time.format.DateTimeParseException;
+
+import nautillus.enums.AdministrationRoute;
+import nautillus.enums.Label;
+import nautillus.enums.PharmForm;
+import nautillus.enums.RemedyStatus;
 
 public class Batch extends Remedies {
 
-    private float preco;
-    private LocalDate fab;
-    private LocalDate val;
-    private int numLote;
-    private LocalDate datCad;
+    private float price;
+    private LocalDate manufacturingDate;
+    private LocalDate expiryDate;
+    private int batchNumber;
+    private LocalDate registrationDate;
 
-    public Batch(String nome, LabelColor tarja, EnumRem.opFarm forFarmac, EnumRem.opVia viaAdm,
-                 String regAnvisa, boolean autoMed, EnumRem.opStatus status, int quant,
-                 float preco, String fab, String val, int numLote, String datCad) {
+    public Batch(String name, Label labelColor, PharmForm pharmaceuticalForm,
+                 AdministrationRoute administrationRoute, String anvisaRegistration,
+                 boolean selfMedication, RemedyStatus status, int quantity,
+                 float price, String manufacturingDate, String expiryDate,
+                 int batchNumber, String registrationDate) {
 
-        super(nome, tarja, forFarmac, viaAdm, regAnvisa, autoMed, status, quant);
-        
-        setPreco(preco);
-        setFab(fab);
-        setVal(val);
-        setNumLote(numLote);
-        setDatCad(datCad);
+        super(name, labelColor, pharmaceuticalForm, administrationRoute,
+              anvisaRegistration, selfMedication, status, quantity);
+
+        setPrice(price);
+        setManufacturingDate(manufacturingDate);
+        setExpiryDate(expiryDate);
+        setBatchNumber(batchNumber);
+        setRegistrationDate(registrationDate);
     }
 
-    public float getPreco() {
-        return this.preco;
+    public float getPrice() {
+        return this.price;
     }
 
-    public void setPreco(float rPreco) {
-        if (rPreco >= 0) {
-            this.preco = rPreco;
+    public void setPrice(float price) {
+        if (price >= 0) {
+            this.price = price;
         } else {
             throw new IllegalArgumentException("Preco invalido! O valor nao pode ser negativo.");
         }
     }
 
-    public LocalDate getFab() {
-        return this.fab;
+    public LocalDate getManufacturingDate() {
+        return this.manufacturingDate;
     }
 
-    public void setFab(String rFab) {
+    public void setManufacturingDate(String manufacturingDate) {
         try {
             DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            LocalDate data = LocalDate.parse(rFab, formatador);
+            LocalDate data = LocalDate.parse(manufacturingDate, formatador);
 
-            if (data.isBefore(LocalDate.now())) {
-                this.fab = data;
-            } else {
-                throw new IllegalArgumentException("Formato de data invalido! Use dd/MM/yyyy.");
+            if (!data.isBefore(LocalDate.now())) {
+                throw new IllegalArgumentException("Data de fabricacao deve ser anterior a data atual.");
             }
-        }catch (IllegalArgumentException e) {
-            throw e;
-        } catch (Exception e) {
+            this.manufacturingDate = data;
+        } catch (DateTimeParseException e) {
             throw new IllegalArgumentException("Formato de data invalido! Use dd/MM/yyyy.");
         }
     }
 
-    public LocalDate getVal() {
-        return this.val;
+    public LocalDate getExpiryDate() {
+        return this.expiryDate;
     }
 
-    public void setVal(String rVal) {
+    public void setExpiryDate(String expiryDate) {
         try {
             DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            LocalDate data = LocalDate.parse(rVal, formatador);
+            LocalDate data = LocalDate.parse(expiryDate, formatador);
 
-            if (data.isAfter(this.fab)) {
-                this.val = data;
-            } else {
-                throw new IllegalArgumentException("Data de validade invalida! Deve ser maior que a data de fabricacao.");
+            if (this.manufacturingDate != null && !data.isAfter(this.manufacturingDate)) {
+                throw new IllegalArgumentException("Data de validade deve ser maior que a data de fabricacao.");
             }
-        }catch (IllegalArgumentException e) {
-            throw e;
-        } catch (Exception e) {
+            this.expiryDate = data;
+        } catch (DateTimeParseException e) {
             throw new IllegalArgumentException("Formato de data invalido! Use dd/MM/yyyy.");
         }
     }
 
-    public int getNumLote() {
-        return this.numLote;
+    public int getBatchNumber() {
+        return this.batchNumber;
     }
 
-    public void setNumLote(int rNumLote) {
-        if (rNumLote > 0) {
-            this.numLote = rNumLote;
+    public void setBatchNumber(int batchNumber) {
+        if (batchNumber > 0) {
+            this.batchNumber = batchNumber;
         } else {
             throw new IllegalArgumentException("Numero de lote invalido!");
         }
     }
 
-    public LocalDate getDatCad() {
-        return this.datCad;
+    public LocalDate getRegistrationDate() {
+        return this.registrationDate;
     }
 
-    public void setDatCad(String rDatCad) {
+    public void setRegistrationDate(String registrationDate) {
         try {
             DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            LocalDate data = LocalDate.parse(rDatCad, formatador);
+            LocalDate data = LocalDate.parse(registrationDate, formatador);
 
-            if (data.isBefore(LocalDate.now())) {
-                this.datCad = data;
-            } else {
-                throw new IllegalArgumentException("Formato de data invalido! Use dd/MM/yyyy.");
+            if (!data.isBefore(LocalDate.now())) {
+                throw new IllegalArgumentException("Data de cadastro deve ser anterior a data atual.");
             }
-        } catch (IllegalArgumentException e) {
-            throw e;
-        } catch (Exception e) {
+            this.registrationDate = data;
+        } catch (DateTimeParseException e) {
             throw new IllegalArgumentException("Formato de data invalido! Use dd/MM/yyyy.");
         }
     }

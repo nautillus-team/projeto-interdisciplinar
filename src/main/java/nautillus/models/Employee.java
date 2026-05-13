@@ -2,6 +2,7 @@ package nautillus.models;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 import nautillus.enums.EmployeeType;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -11,35 +12,34 @@ public class Employee {
     private static int genId = 0;
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-    private String nome;
+    private String name;
     private String cpf;
     private String rg;
-    private EmployeeType funcao;
-    private String dataNasc;
-    private String senha;
-    private String matricula;
+    private EmployeeType role;
+    private String birthDate;
+    private String password;
+    private String employeeId;
     private final int id;
 
-    public Employee(String nome, String cpf, String rg, EmployeeType funcao,
-                    String matricula, String dataNasc, String senha) {
-
-        setNome(nome);
+    public Employee(String name, String cpf, String rg, EmployeeType role,
+                    String employeeId, String birthDate, String password) {
+        setName(name);
         setCpf(cpf);
         setRg(rg);
-        this.funcao = funcao;
-        setMatricula(matricula);
-        setDataNasc(dataNasc);
-        setSenha(senha);
-        this.id     = ++genId;
+        setRole(role);
+        setEmployeeId(employeeId);
+        setBirthDate(birthDate);
+        setPassword(password);
+        this.id = ++genId;
     }
 
-    public String getNome() {
-        return this.nome;
+    public String getName() {
+        return this.name;
     }
 
-    public void setNome(String fNome) {
-        if (fNome != null && fNome.replace(" ", "").matches("[a-zA-ZÀ-ÿ]+")) {
-            this.nome = fNome;
+    public void setName(String name) {
+        if (name != null && name.replace(" ", "").matches("[a-zA-ZÀ-ÿ]+")) {
+            this.name = name;
         } else {
             throw new IllegalArgumentException("Nome invalido! Use apenas letras.");
         }
@@ -49,9 +49,9 @@ public class Employee {
         return this.cpf;
     }
 
-    public void setCpf(String fCpf) {
-        if (fCpf != null && fCpf.replace(" ", "").matches("[0-9]+") && fCpf.length() == 11) {
-            this.cpf = fCpf;
+    public void setCpf(String cpf) {
+        if (cpf != null && cpf.replace(" ", "").matches("[0-9]+") && cpf.length() == 11) {
+            this.cpf = cpf;
         } else {
             throw new IllegalArgumentException("CPF invalido!");
         }
@@ -61,70 +61,66 @@ public class Employee {
         return this.rg;
     }
 
-    public void setRg(String fRg) {
-        if (fRg != null && fRg.matches("[0-9]+") && fRg.length() == 9) {
-            this.rg = fRg;
+    public void setRg(String rg) {
+        if (rg != null && rg.matches("[0-9]+") && rg.length() == 9) {
+            this.rg = rg;
         } else {
             throw new IllegalArgumentException("RG invalido!");
         }
     }
 
-    public EmployeeType getFuncao() {
-        return this.funcao;
+    public EmployeeType getRole() {
+        return this.role;
     }
 
-    public void setFuncao(EmployeeType fFuncao) {
-        if (fFuncao == null) {
+    public void setRole(EmployeeType role) {
+        if (role == null) {
             throw new IllegalArgumentException("Funcao invalida!");
         }
-        this.funcao = fFuncao;
+        this.role = role;
     }
 
-    public String getDataNasc() {
-        return this.dataNasc;
+    public String getBirthDate() {
+        return this.birthDate;
     }
 
-    public void setDataNasc(String fDataNasc) {
+    public void setBirthDate(String birthDate) {
         try {
             DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            LocalDate data = LocalDate.parse(fDataNasc, formatador);
+            LocalDate data = LocalDate.parse(birthDate, formatador);
 
-            if (data.isBefore(LocalDate.now())) {
-                this.dataNasc = fDataNasc;
-            } else {
+            if (!data.isBefore(LocalDate.now())) {
                 throw new IllegalArgumentException("Digite uma data valida.");
             }
 
-        } catch (IllegalArgumentException e) {
-            throw e;
-        } catch (Exception e) {
+            this.birthDate = birthDate;
+        } catch (DateTimeParseException e) {
             throw new IllegalArgumentException("Formato de data invalido! Use dd/MM/yyyy.");
         }
     }
 
-    public String getMatricula() {
-        return this.matricula;
+    public String getEmployeeId() {
+        return this.employeeId;
     }
 
-    public void setMatricula(String fMatricula) {
-        if (fMatricula != null && !fMatricula.isBlank() && fMatricula.length() < 30) {
-            this.matricula = fMatricula;
+    public void setEmployeeId(String employeeId) {
+        if (employeeId != null && !employeeId.isBlank() && employeeId.length() < 30) {
+            this.employeeId = employeeId;
         } else {
             throw new IllegalArgumentException("Matricula invalida!");
         }
     }
 
-    public void setSenha(String fSenha) {
-        if (fSenha != null && fSenha.length() >= 8) {
-            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-            this.senha = encoder.encode(fSenha);
+    public void setPassword(String password) {
+        if (password != null && password.length() >= 8) {
+            this.password = encoder.encode(password);
         } else {
             throw new IllegalArgumentException("Senha invalida! Minimo 8 caracteres.");
         }
     }
 
-    public boolean verificarSenha(String fSenha) {
-        return encoder.matches(fSenha, this.senha);
+    public boolean verifyPassword(String password) {
+        return encoder.matches(password, this.password);
     }
 
     public int getId() {

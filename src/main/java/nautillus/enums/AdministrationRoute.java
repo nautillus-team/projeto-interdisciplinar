@@ -1,8 +1,22 @@
 package nautillus.enums;
 
-enum 
+public enum AdministrationRoute {
 
-private EnumRem.opTarja tarja;
-private EnumRem.opFarm forFarmac;
-private EnumRem.opVia viaAdm;
-private EnumRem.opStatus status;
+    PO("Oral"),
+    SL("Sublingual"),
+    IV("Intravenous"),
+    IM("Intramuscular"),
+    SC("Subcutaneous"),
+    TOP("Topical"),
+    INH("Inhalational");
+
+    private final String description;
+
+    AdministrationRoute(String description) {
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+}

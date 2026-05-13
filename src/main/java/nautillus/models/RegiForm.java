@@ -3,33 +3,33 @@ package nautillus.models;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class RegiForm {
 
-    private String nome;
+    private String name;
     private String cpf;
     private String rg;
-    private String dataNasc;
-    private String cartSUS;
-    private int idade;
+    private String birthDate;
+    private String susCard;
+    private int age;
 
-    public RegiForm (String nome, String cpf, String rg, String dataNasc, String cartSUS, int idade) {
-
-        setNome(nome);
+    public RegiForm(String name, String cpf, String rg, String birthDate, String susCard, int age) {
+        setName(name);
         setCpf(cpf);
         setRg(rg);
-        setDataNasc(dataNasc);
-        setCartSUS(cartSUS);
-        this.idade = idade; // para fazer posteriormente
+        setBirthDate(birthDate);
+        setSusCard(susCard);
+        this.age = age;
     }
 
-    public String getNome() {
-        return this.nome;
+    public String getName() {
+        return this.name;
     }
 
-    public void setNome(String fNome) {
-        if (fNome != null && fNome.replace(" ", "").matches("[a-zA-ZÀ-ÿ]+")) {
-            this.nome = fNome;
+    public void setName(String name) {
+        if (name != null && name.replace(" ", "").matches("[a-zA-ZÀ-ÿ]+")) {
+            this.name = name;
         } else {
             throw new IllegalArgumentException("Nome invalido! Use apenas letras.");
         }
@@ -39,9 +39,9 @@ public class RegiForm {
         return this.cpf;
     }
 
-    public void setCpf(String fCpf) {
-        if (fCpf != null && fCpf.replace(" ", "").matches("[0-9]+") && fCpf.length() == 11) {
-            this.cpf = fCpf;
+    public void setCpf(String cpf) {
+        if (cpf != null && cpf.replace(" ", "").matches("[0-9]+") && cpf.length() == 11) {
+            this.cpf = cpf;
         } else {
             throw new IllegalArgumentException("CPF invalido!");
         }
@@ -51,50 +51,47 @@ public class RegiForm {
         return this.rg;
     }
 
-    public void setRg(String fRg) {
-        if (fRg != null && fRg.matches("[0-9]+") && fRg.length() == 9) {
-            this.rg = fRg;
+    public void setRg(String rg) {
+        if (rg != null && rg.matches("[0-9]+") && rg.length() == 9) {
+            this.rg = rg;
         } else {
             throw new IllegalArgumentException("RG invalido!");
         }
     }
 
-    public String getDataNasc() {
-        return this.dataNasc;
+    public String getBirthDate() {
+        return this.birthDate;
     }
 
-    public void setDataNasc(String fDataNasc) {
+    public void setBirthDate(String birthDate) {
         try {
             DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            LocalDate data = LocalDate.parse(fDataNasc, formatador);
+            LocalDate data = LocalDate.parse(birthDate, formatador);
 
-            if (data.isBefore(LocalDate.now())) {
-                this.dataNasc = fDataNasc;
-            } else {
+            if (!data.isBefore(LocalDate.now())) {
                 throw new IllegalArgumentException("Digite uma data valida.");
             }
-            
-        } catch (Exception e) {
-                throw new IllegalArgumentException("Formato de data invalido! Use dd/MM/yyyy.");
+            this.birthDate = birthDate;
+        } catch (DateTimeParseException e) {
+            throw new IllegalArgumentException("Formato de data invalido! Use dd/MM/yyyy.");
         }
     }
 
-    public String getCartSUS() {
-        return this.cartSUS;
+    public String getSusCard() {
+        return this.susCard;
     }
 
-    public void setCartSUS(String fCartSUS) {
-        if (fCartSUS != null && fCartSUS.matches("[0-9]+") && fCartSUS.length() == 15) {
-            this.cartSUS = fCartSUS;
+    public void setSusCard(String susCard) {
+        if (susCard != null && susCard.matches("[0-9]+") && susCard.length() == 15) {
+            this.susCard = susCard;
         } else {
-            throw new IllegalArgumentException("Digite um cartão SUS valido!.");
+            throw new IllegalArgumentException("Digite um cartao SUS valido!");
         }
     }
 
-    public int getIdade() {
+    public int getAge() {
         DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate nascimento = LocalDate.parse(this.dataNasc, formatador);
+        LocalDate nascimento = LocalDate.parse(this.birthDate, formatador);
         return Period.between(nascimento, LocalDate.now()).getYears();
     }
-
 }

@@ -1,17 +1,18 @@
 package nautillus.models;
 
-import nautillus.enums.EnumEmp;
-import nautillus.enums.EnumRem;
+import nautillus.enums.AdministrationRoute;
+import nautillus.enums.EmployeeType;
+import nautillus.enums.Label;
+import nautillus.enums.PharmForm;
+import nautillus.enums.RemedyStatus;
 
 public class Pharmaceutical extends Employee {
 
     private String crf;
 
-    public Pharmaceutical (String nome, String cpf, String rg, String matricula, String dataNasc, String senha,
-                           String crf) {
-
-        super(nome, cpf, rg, EnumEmp.EnumEmpl.FARMACEUTICO, matricula, dataNasc, senha);
-
+    public Pharmaceutical(String name, String cpf, String rg, String employeeId, String birthDate,
+                          String password, String crf) {
+        super(name, cpf, rg, EmployeeType.PHARMACIST, employeeId, birthDate, password);
         setCrf(crf);
     }
 
@@ -19,45 +20,42 @@ public class Pharmaceutical extends Employee {
         return this.crf;
     }
 
-    public void setCrf(String fCrf) {
-        if (fCrf != null && fCrf.length() == 5 && fCrf.matches("[0-9]+")) {
-            this.crf = fCrf;
+    public void setCrf(String crf) {
+        if (crf != null && crf.length() == 5 && crf.matches("[0-9]+")) {
+            this.crf = crf;
         } else {
             throw new IllegalArgumentException("Digite um CRF valido!");
         }
     }
 
-    public void createRem (Remedies aRemedies, String nomeRem, EnumRem.opTarja tarjaRem, EnumRem.opFarm farmacRem,
-                           EnumRem.opVia viaAdmRem, String regAnvisaRem, boolean autoMedRem, EnumRem.opStatus statusRem,
-                           int quantRem) {
-
+    public void createRemedy(Remedies remedy, String name, Label labelColor,
+                              PharmForm pharmaceuticalForm, AdministrationRoute administrationRoute,
+                              String anvisaRegistration, boolean selfMedication,
+                              RemedyStatus status, int quantity) {
         try {
-            aRemedies.setNome(nomeRem);
-            aRemedies.setTarja(tarjaRem);
-            aRemedies.setForFarmac(farmacRem);
-            aRemedies.setViaAdm(viaAdmRem);
-            aRemedies.setRegAnvisa(regAnvisaRem);
-            aRemedies.setAutoMed(autoMedRem);
-            aRemedies.setStatus(statusRem);
-            aRemedies.setQuant(quantRem);
+            remedy.setName(name);
+            remedy.setLabel(labelColor);
+            remedy.setPharmaceuticalForm(pharmaceuticalForm);
+            remedy.setAdministrationRoute(administrationRoute);
+            remedy.setAnvisaRegistration(anvisaRegistration);
+            remedy.setSelfMedication(selfMedication);
+            remedy.setStatus(status);
+            remedy.setQuantity(quantity);
         } catch (IllegalArgumentException e) {
             System.out.println("Erro ao criar remedio: " + e.getMessage());
         }
     }
 
-
-    public void createBatc (Batch aBatch,  float precoBatc, String fabBatc, String valBatc,
-                            int numLoteBatc, String datCadBatc) {
-
+    public void createBatch(Batch batch, float price, String manufacturingDate, String expiryDate,
+                            int batchNumber, String registrationDate) {
         try {
-            aBatch.setPreco(precoBatc);
-            aBatch.setFab(fabBatc);
-            aBatch.setVal(valBatc);
-            aBatch.setNumLote(numLoteBatc);
-            aBatch.setDatCad(datCadBatc);
-
+            batch.setPrice(price);
+            batch.setManufacturingDate(manufacturingDate);
+            batch.setExpiryDate(expiryDate);
+            batch.setBatchNumber(batchNumber);
+            batch.setRegistrationDate(registrationDate);
         } catch (IllegalArgumentException e) {
-            System.out.println("erro ao criar lote" + e.getMessage());
+            System.out.println("Erro ao criar lote: " + e.getMessage());
         }
     }
 }
