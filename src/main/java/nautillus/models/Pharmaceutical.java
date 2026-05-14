@@ -10,7 +10,7 @@ public class Pharmaceutical extends Employee {
 
     private String crf;
 
-    public Pharmaceutical(String name, String cpf, String rg, String employeeId, String birthDate,
+    public Pharmaceutical(String name, String cpf, String rg, EmployeeType role, String employeeId, String birthDate,
                           String password, String crf) {
         super(name, cpf, rg, EmployeeType.PHARMACIST, employeeId, birthDate, password);
         setCrf(crf);

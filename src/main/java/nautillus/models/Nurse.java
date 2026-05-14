@@ -8,11 +8,11 @@ public class Nurse extends Employee {
     private String coren;
     private NurseType category;
 
-    public Nurse(String name, String cpf, String rg, String employeeId, String birthDate,
+    public Nurse(String name, String cpf, String rg,EmployeeType role, String employeeId, String birthDate,
                  String password, String coren, NurseType category) {
         super(name, cpf, rg, EmployeeType.NURSE, employeeId, birthDate, password);
         setCoren(coren);
-        setCategory(category);
+
     }
 
     public String getCoren() {

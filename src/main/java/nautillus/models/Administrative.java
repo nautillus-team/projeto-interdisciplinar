@@ -8,8 +8,9 @@ public class Administrative extends Employee {
 
     private float budget;
 
-    public Administrative(String name, String cpf, String rg, String employeeId,
+    public Administrative(String name, String cpf, String rg, EmployeeType role,String employeeId,
                           String birthDate, String password, float budget) {
+
         super(name, cpf, rg, EmployeeType.ADMINISTRATIVE, employeeId, birthDate, password);
         setBudget(budget);
     }

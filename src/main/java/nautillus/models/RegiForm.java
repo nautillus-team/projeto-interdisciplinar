@@ -5,22 +5,23 @@ import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-public class RegiForm {
+public class RegiForm extends Patient {
 
     private String name;
     private String cpf;
     private String rg;
     private String birthDate;
     private String susCard;
-    private int age;
 
-    public RegiForm(String name, String cpf, String rg, String birthDate, String susCard, int age) {
+    public RegiForm(int id, String triage, String name, String cpf, String rg, String birthDate, String susCard) {
+
+        super(id, triage);
+
         setName(name);
         setCpf(cpf);
         setRg(rg);
         setBirthDate(birthDate);
         setSusCard(susCard);
-        this.age = age;
     }
 
     public String getName() {

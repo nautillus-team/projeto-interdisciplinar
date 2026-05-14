@@ -21,7 +21,7 @@ public class Patient {
     }
 
     public void setTriage(String triage) {
-        if (triage != null) {
+        if (triage != null && triage.length() > 0) {
             this.triage = triage;
         } else {
             throw new IllegalArgumentException("E necessario digitar um valor para triagem!");

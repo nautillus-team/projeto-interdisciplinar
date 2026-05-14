@@ -16,6 +16,10 @@ public class Remedies {
     private RemedyStatus status;
     private int quantity;
 
+    public Remedies(String name) {
+        setName(name);
+    }
+
     public Remedies(String name, Label labelColor, PharmForm pharmaceuticalForm,
                     AdministrationRoute administrationRoute, String anvisaRegistration,
                     boolean selfMedication, RemedyStatus status, int quantity) {

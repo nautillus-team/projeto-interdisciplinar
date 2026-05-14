@@ -9,8 +9,9 @@ public class Medic extends Employee {
     private int office;
     private MedicalSpecialty specialty;
 
-    public Medic(String name, String cpf, String rg, String employeeId, String birthDate,
+    public Medic(String name, String cpf, String rg, EmployeeType role, String employeeId, String birthDate,
                  String password, String crm, int office, MedicalSpecialty specialty) {
+
         super(name, cpf, rg, EmployeeType.DOCTOR, employeeId, birthDate, password);
         setCrm(crm);
         setOffice(office);
