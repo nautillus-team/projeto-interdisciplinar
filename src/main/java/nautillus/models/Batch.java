@@ -4,44 +4,39 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-import nautillus.enums.AdministrationRoute;
-import nautillus.enums.Label;
-import nautillus.enums.PharmForm;
-import nautillus.enums.RemedyStatus;
+public class Batch {
 
-public class Batch extends Remedies {
-
-    private float price;
+    private final Remedy remedy;
+    private int quantity;
     private LocalDate manufacturingDate;
     private LocalDate expiryDate;
     private int batchNumber;
     private LocalDate registrationDate;
 
-    public Batch(String name, Label labelColor, PharmForm pharmaceuticalForm,
-                 AdministrationRoute administrationRoute, String anvisaRegistration,
-                 boolean selfMedication, RemedyStatus status, int quantity,
-                 float price, String manufacturingDate, String expiryDate,
+    public Batch(Remedy remedy, int quantity,
+                 String manufacturingDate, String expiryDate,
                  int batchNumber, String registrationDate) {
-
-        super(name, labelColor, pharmaceuticalForm, administrationRoute,
-              anvisaRegistration, selfMedication, status, quantity);
-
-        setPrice(price);
+        this.remedy = remedy;
+        setQuantity(quantity);
         setManufacturingDate(manufacturingDate);
         setExpiryDate(expiryDate);
         setBatchNumber(batchNumber);
         setRegistrationDate(registrationDate);
     }
 
-    public float getPrice() {
-        return this.price;
+    public Remedy getRemedy() {
+        return this.remedy;
     }
 
-    public void setPrice(float price) {
-        if (price >= 0) {
-            this.price = price;
+    public int getQuantity() {
+        return this.quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        if (quantity >= 0) {
+            this.quantity = quantity;
         } else {
-            throw new IllegalArgumentException("Preco invalido! O valor nao pode ser negativo.");
+            throw new IllegalArgumentException("Quantidade nao pode ser negativa!");
         }
     }
 
@@ -109,5 +104,9 @@ public class Batch extends Remedies {
         } catch (DateTimeParseException e) {
             throw new IllegalArgumentException("Formato de data invalido! Use dd/MM/yyyy.");
         }
+    }
+
+    public float getBatchPrice() {
+        return this.remedy.getPrice() * this.quantity;
     }
 }

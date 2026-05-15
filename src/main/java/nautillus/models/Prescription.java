@@ -3,8 +3,8 @@ package nautillus.models;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class Prescription extends Remedies {
-
+// TODO: Refatorar isso daqui pra aceitar apenas uma entidade remédio
+public class Prescription extends Remedy {
 
     private LocalDate startDate;
     private LocalDate EndDate;

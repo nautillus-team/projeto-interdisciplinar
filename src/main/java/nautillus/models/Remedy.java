@@ -5,7 +5,7 @@ import nautillus.enums.Label;
 import nautillus.enums.PharmForm;
 import nautillus.enums.RemedyStatus;
 
-public class Remedies {
+public class Remedy {
 
     private String name;
     private Label labelColor;
@@ -15,14 +15,15 @@ public class Remedies {
     private boolean selfMedication;
     private RemedyStatus status;
     private int quantity;
+    private float price;
 
-    public Remedies(String name) {
+    public Remedy(String name) {
         setName(name);
     }
 
-    public Remedies(String name, Label labelColor, PharmForm pharmaceuticalForm,
+    public Remedy(String name, Label labelColor, PharmForm pharmaceuticalForm,
                     AdministrationRoute administrationRoute, String anvisaRegistration,
-                    boolean selfMedication, RemedyStatus status, int quantity) {
+                    boolean selfMedication, RemedyStatus status, int quantity, float price) {
         setName(name);
         setLabel(labelColor);
         setPharmaceuticalForm(pharmaceuticalForm);
@@ -31,6 +32,7 @@ public class Remedies {
         setSelfMedication(selfMedication);
         setStatus(status);
         setQuantity(quantity);
+        setPrice(price);
     }
 
     public String getName() {
@@ -112,6 +114,18 @@ public class Remedies {
             this.quantity = quantity;
         } else {
             throw new IllegalArgumentException("Quantidade nao pode ser negativa!");
+        }
+    }
+
+    public float getPrice() {
+        return this.price;
+    }
+
+    public void setPrice(float price) {
+        if (price >= 0) {
+            this.price = price;
+        } else {
+            throw new IllegalArgumentException("Preco invalido! O valor nao pode ser negativo.");
         }
     }
 }

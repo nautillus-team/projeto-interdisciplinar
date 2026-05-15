@@ -28,10 +28,10 @@ public class Pharmaceutical extends Employee {
         }
     }
 
-    public void createRemedy(Remedies remedy, String name, Label labelColor,
+    public void createRemedy(Remedy remedy, String name, Label labelColor,
                               PharmForm pharmaceuticalForm, AdministrationRoute administrationRoute,
                               String anvisaRegistration, boolean selfMedication,
-                              RemedyStatus status, int quantity) {
+                              RemedyStatus status, int quantity, float price) {
         try {
             remedy.setName(name);
             remedy.setLabel(labelColor);
@@ -41,15 +41,16 @@ public class Pharmaceutical extends Employee {
             remedy.setSelfMedication(selfMedication);
             remedy.setStatus(status);
             remedy.setQuantity(quantity);
+            remedy.setPrice(price);
         } catch (IllegalArgumentException e) {
             System.out.println("Erro ao criar remedio: " + e.getMessage());
         }
     }
 
-    public void createBatch(Batch batch, float price, String manufacturingDate, String expiryDate,
+    public void createBatch(Batch batch, int quantity, String manufacturingDate, String expiryDate,
                             int batchNumber, String registrationDate) {
         try {
-            batch.setPrice(price);
+            batch.setQuantity(quantity);
             batch.setManufacturingDate(manufacturingDate);
             batch.setExpiryDate(expiryDate);
             batch.setBatchNumber(batchNumber);

@@ -5,6 +5,7 @@ import nautillus.enums.Label;
 import nautillus.enums.PharmForm;
 import nautillus.enums.RemedyStatus;
 import nautillus.models.Batch;
+import nautillus.models.Remedy;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -12,7 +13,7 @@ public class BatchTest {
 
     @Test
     void batchValid() {
-        Batch batch = new Batch(
+        Remedy remedy = new Remedy(
                 "Dipirona Monoidratada",
                 Label.RED,
                 PharmForm.TABLET,
@@ -20,16 +21,20 @@ public class BatchTest {
                 "1234567891234",
                 true,
                 RemedyStatus.ACTIVE,
+                0,
+                2.99f
+                );
+
+        Batch batch = new Batch(
+                remedy,
                 12,
-                2.99f,
                 "01/03/2026",
                 "01/05/2026",
                 1,
                 "12/04/2026"
                 );
 
-        // Lower case test
-        assertEquals("Dipirona Monoidratada", batch.getName());
+        // Lower-case test
+        assertEquals("Dipirona Monoidratada", batch.getRemedy().getName());
     }
 }
-
