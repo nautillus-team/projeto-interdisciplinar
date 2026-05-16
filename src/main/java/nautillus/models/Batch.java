@@ -6,17 +6,17 @@ import java.time.format.DateTimeParseException;
 
 public class Batch {
 
-    private final Remedy remedy;
+    private int batchNumber;
+    private final Medication medication;
     private int quantity;
     private LocalDate manufacturingDate;
     private LocalDate expiryDate;
-    private int batchNumber;
     private LocalDate registrationDate;
 
-    public Batch(Remedy remedy, int quantity,
+    public Batch(Medication medication, int quantity,
                  String manufacturingDate, String expiryDate,
                  int batchNumber, String registrationDate) {
-        this.remedy = remedy;
+        this.medication = medication;
         setQuantity(quantity);
         setManufacturingDate(manufacturingDate);
         setExpiryDate(expiryDate);
@@ -24,8 +24,8 @@ public class Batch {
         setRegistrationDate(registrationDate);
     }
 
-    public Remedy getRemedy() {
-        return this.remedy;
+    public Medication getRemedy() {
+        return this.medication;
     }
 
     public int getQuantity() {
@@ -107,6 +107,6 @@ public class Batch {
     }
 
     public float getBatchPrice() {
-        return this.remedy.getPrice() * this.quantity;
+        return this.medication.getPrice() * this.quantity;
     }
 }

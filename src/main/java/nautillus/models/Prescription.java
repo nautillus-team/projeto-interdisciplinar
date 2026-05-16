@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 // TODO: Refatorar isso daqui pra aceitar apenas uma entidade remédio
-public class Prescription extends Remedy {
+public class Prescription extends Medication {
 
     private LocalDate startDate;
     private LocalDate EndDate;

@@ -1,6 +1,6 @@
 package nautillus.enums;
 
-public enum RemedyStatus {
+public enum MedicationStatus {
     ACTIVE,
     INACTIVE,
     BLOCKED

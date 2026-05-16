@@ -1,6 +1,6 @@
 package nautillus.enums;
 
-public enum PharmForm {
+public enum MedicationForm {
     TABLET,
     CAPSULE,
     DRAGEE,

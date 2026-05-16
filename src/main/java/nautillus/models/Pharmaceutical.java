@@ -3,8 +3,8 @@ package nautillus.models;
 import nautillus.enums.AdministrationRoute;
 import nautillus.enums.EmployeeType;
 import nautillus.enums.Label;
-import nautillus.enums.PharmForm;
-import nautillus.enums.RemedyStatus;
+import nautillus.enums.MedicationForm;
+import nautillus.enums.MedicationStatus;
 
 public class Pharmaceutical extends Employee {
 
@@ -28,20 +28,20 @@ public class Pharmaceutical extends Employee {
         }
     }
 
-    public void createRemedy(Remedy remedy, String name, Label labelColor,
-                              PharmForm pharmaceuticalForm, AdministrationRoute administrationRoute,
-                              String anvisaRegistration, boolean selfMedication,
-                              RemedyStatus status, int quantity, float price) {
+    public void createRemedy(Medication medication, String name, Label labelColor,
+                             MedicationForm pharmaceuticalForm, AdministrationRoute administrationRoute,
+                             String anvisaRegistration, boolean selfMedication,
+                             MedicationStatus status, int quantity, float price) {
         try {
-            remedy.setName(name);
-            remedy.setLabel(labelColor);
-            remedy.setPharmaceuticalForm(pharmaceuticalForm);
-            remedy.setAdministrationRoute(administrationRoute);
-            remedy.setAnvisaRegistration(anvisaRegistration);
-            remedy.setSelfMedication(selfMedication);
-            remedy.setStatus(status);
-            remedy.setQuantity(quantity);
-            remedy.setPrice(price);
+            medication.setName(name);
+            medication.setLabel(labelColor);
+            medication.setPharmaceuticalForm(pharmaceuticalForm);
+            medication.setAdministrationRoute(administrationRoute);
+            medication.setAnvisaRegistration(anvisaRegistration);
+            medication.setSelfMedication(selfMedication);
+            medication.setStatus(status);
+            medication.setQuantity(quantity);
+            medication.setPrice(price);
         } catch (IllegalArgumentException e) {
             System.out.println("Erro ao criar remedio: " + e.getMessage());
         }

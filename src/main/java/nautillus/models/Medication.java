@@ -2,28 +2,28 @@ package nautillus.models;
 
 import nautillus.enums.AdministrationRoute;
 import nautillus.enums.Label;
-import nautillus.enums.PharmForm;
-import nautillus.enums.RemedyStatus;
+import nautillus.enums.MedicationForm;
+import nautillus.enums.MedicationStatus;
 
-public class Remedy {
+public class Medication {
 
     private String name;
     private Label labelColor;
-    private PharmForm pharmaceuticalForm;
+    private MedicationForm pharmaceuticalForm;
     private AdministrationRoute administrationRoute;
     private String anvisaRegistration;
     private boolean selfMedication;
-    private RemedyStatus status;
+    private MedicationStatus status;
     private int quantity;
     private float price;
 
-    public Remedy(String name) {
+    public Medication(String name) {
         setName(name);
     }
 
-    public Remedy(String name, Label labelColor, PharmForm pharmaceuticalForm,
-                    AdministrationRoute administrationRoute, String anvisaRegistration,
-                    boolean selfMedication, RemedyStatus status, int quantity, float price) {
+    public Medication(String name, Label labelColor, MedicationForm pharmaceuticalForm,
+                      AdministrationRoute administrationRoute, String anvisaRegistration,
+                      boolean selfMedication, MedicationStatus status, int quantity, float price) {
         setName(name);
         setLabel(labelColor);
         setPharmaceuticalForm(pharmaceuticalForm);
@@ -56,11 +56,11 @@ public class Remedy {
         this.labelColor = labelColor;
     }
 
-    public PharmForm getPharmaceuticalForm() {
+    public MedicationForm getPharmaceuticalForm() {
         return this.pharmaceuticalForm;
     }
 
-    public void setPharmaceuticalForm(PharmForm pharmaceuticalForm) {
+    public void setPharmaceuticalForm(MedicationForm pharmaceuticalForm) {
         if (pharmaceuticalForm == null) throw new IllegalArgumentException("Forma farmaceutica invalida!");
         this.pharmaceuticalForm = pharmaceuticalForm;
     }
@@ -94,11 +94,11 @@ public class Remedy {
         this.selfMedication = selfMedication;
     }
 
-    public RemedyStatus getStatus() {
+    public MedicationStatus getStatus() {
         return this.status;
     }
 
-    public void setStatus(RemedyStatus status) {
+    public void setStatus(MedicationStatus status) {
         if (status == null) {
             throw new IllegalArgumentException("Status invalido!");
         }
