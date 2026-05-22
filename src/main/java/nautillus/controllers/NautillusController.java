@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class NautillusController {
 
-    @GetMapping("/nautillus/")
+    @GetMapping("/api/")
     public String getNautillusName() {
 
-        return "Nautillus";
+        return "Hello World";
     }
 }
