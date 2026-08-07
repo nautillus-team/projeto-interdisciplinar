@@ -6,7 +6,4 @@ public class Section {
     private String sectionName;
 
     private Section rootSection;
-    private Section[] subSections;
-
-    private Batch[] sectionBatches;
 }
