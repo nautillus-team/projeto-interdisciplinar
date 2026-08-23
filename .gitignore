@@ -65,3 +65,6 @@ env/
 # JVM
 hs_err_pid*
 hsperfdata_*/
+
+# Enviroment
+.env

@@ -6,27 +6,38 @@ O arquivo **NÃO SUBSTITUI** a documentação oficial. Ele serve apenas como ref
 
 ## Lotes
 
-### `GET /lotes`
+### `GET /batches`
 
 Retorna todos os lotes registrados.
 
-### `GET /lotes?id={id}`
+### `GET /batches?id={id}`
 
 Retorna um ou mais lotes filtrados pelo ID do lote.
 
-### `GET /lotes?medid={id}`
+### `GET /batches?medid={id}`
 
 Retorna os lotes que possuem um medicamento com o ID informado.
 
-### `POST /lotes`
+### `POST /batches`
 
 Insere um novo lote.
 
-### `PUT /lotes?id={id}`
+Exemplo de corpo da requisição:
+
+```json
+{
+  "medicationQuantity": 120,
+  "medication": {
+    "medicationId": 1
+  }
+}
+```
+
+### `PUT /batches?id={id}`
 
 Atualiza os dados de um lote existente.
 
-### `DELETE /lotes?id={id}`
+### `DELETE /batches?id={id}`
 
 Remove um lote existente.
 
